@@ -23,6 +23,13 @@ screen.onkey(snake.move_down, 'Down')
 screen.onkey(snake.move_right, 'Right')
 screen.onkey(snake.move_left, 'Left')
 
+
+def save_score_in_a_file(score, high_score):
+    with open('score.txt', 'a') as file:
+        file.write(f'\nYour score is {score}.')
+        file.write(f'\nYour high score is {high_score}')
+
+
 # start the game
 is_game_on = True
 while is_game_on:
@@ -41,6 +48,7 @@ while is_game_on:
         # is_game_on = False
         # score_board.end_game()
         score_board.get_high_score()
+        save_score_in_a_file(score_board.score, score_board.high_score)
         snake.reset_snake()
 
     for segment in snake.segments:
@@ -50,6 +58,7 @@ while is_game_on:
             # is_game_on = False
             # score_board.end_game()
             score_board.get_high_score()
+            save_score_in_a_file(score_board.score, score_board.high_score)
             snake.reset_snake()
 
 screen.exitonclick()
